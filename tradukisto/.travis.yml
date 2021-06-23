@@ -3,4 +3,5 @@ dist: trusty
 jdk:
   - oraclejdk8
   - oraclejdk9
+  - oraclejdk16
 after_success: ./gradlew jacocoTestReport coveralls

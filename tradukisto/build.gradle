@@ -10,8 +10,7 @@ buildscript {
 plugins {
     id 'java'
     id 'groovy'
-    id 'idea'
-    id 'checkstyle'
+    id 'idea'    
     id 'jacoco'
     id 'pmd'
     id 'pl.allegro.tech.build.axion-release' version '1.8.3'
@@ -97,6 +96,4 @@ modifyPom {
     }
 }
 
-checkstyle {
-    toolVersion = "5.9"
-}
+//checkstyle { toolVersion = "5.9" }
