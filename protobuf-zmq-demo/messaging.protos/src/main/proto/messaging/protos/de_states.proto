@@ -1,0 +1,26 @@
+syntax = "proto3";
+option java_outer_classname = "GermanLandEnumProtos";
+
+package messaging.protos;
+
+message GermanLandEnum {
+  enum Land {
+    NONE = 0;
+    BW = 1; // Baden-Württemberg
+    BY = 2; // Bavaria
+    BE = 3; // Berlin
+    BB = 4; // Brandenburg
+    HB = 5; // Bremen
+    HH = 6; // Hamburg
+    HE = 7; // Hesse
+    NI = 8; // Lower Saxony
+    MV = 9; // Mecklenburg-Vorpommern
+    NW = 10; // North Rhine-Westphalia
+    RP = 11; // Rhineland-Palatinate
+    SL = 12; // Saarland
+    SN = 13; // Saxony
+    ST = 14; // Saxony-Anhalt
+    SH = 15; // Schleswig-Holstein
+    TH = 16; // Thuringia
+  }
+}

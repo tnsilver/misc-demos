@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>messaging.protos</artifactId>
+	<name>messaging.protos</name>
+	<description>A protocol buffer demo</description>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>com.tnsilver.messaging</groupId>
+		<artifactId>protobuf-zmq-demo</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.tnsilver.messaging</groupId>
+			<artifactId>messaging.util</artifactId>
+			<version>${project.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../messaging.util/target/messaging.util-${project.version}.jar</systemPath>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>os-maven-plugin</artifactId>
+				<version>${os.maven.plugin.version}</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Automatic-Module-Name>com.tnsilver.messaging.protos</Automatic-Module-Name>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.xolstice.maven.plugins</groupId>
+				<artifactId>protobuf-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- <protocExecutable>/usr/local/bin/protoc</protocExecutable> -->
+					<protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
+					<checkStaleness>true</checkStaleness>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

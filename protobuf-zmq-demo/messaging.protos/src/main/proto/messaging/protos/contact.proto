@@ -1,0 +1,30 @@
+syntax = "proto3";
+option java_outer_classname = "ContactProtos";
+//option optimize_for = LITE_RUNTIME;
+//option java_package = "messaging.protos";
+
+package messaging.protos;
+
+import "messaging/protos/address.proto";
+
+message Contact {
+  reserved 10 to 18;
+  string filter = 1;
+  int64  id = 2;
+  string first_name = 3;
+  string middle_initial = 4;
+  string last_name = 5;
+  string email = 6;
+  message Phone {
+	string phone_number = 1;
+	enum PhoneType {
+	  OTHER = 0;
+      MOBILE = 1;
+      HOME = 2;
+      LANDLINE = 3;
+    }
+    PhoneType phone_type = 2;
+  }
+  repeated Phone phone = 7;
+  bool valid = 8;
+}

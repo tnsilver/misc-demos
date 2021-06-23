@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>postfix.calculator</artifactId>
+    <name>postfix calculator</name>
+
+    <parent>
+        <groupId>com.tnsilver.rpn</groupId>
+        <artifactId>rpn</artifactId>
+        <version>1.0-M1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.tnsilver.rpn</groupId>
+            <artifactId>rpn.support</artifactId>
+            <version>1.0-M1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tnsilver.rpn</groupId>
+            <artifactId>infix.converter</artifactId>
+            <version>1.0-M1</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>${junit-platform-surefire-provider.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- to be able to maven package this module independently -->
+    <!-- RUN the following command from the parent project directory -->
+    <!-- mvn install -pl rpn.support,infix.converter -am -->
+
+    <build>
+        <plugins>
+            <!-- BEGIN: Maven Ant Run Plugin Config -->
+            <plugin>
+                <!-- https://dzone.com/articles/jacoco-maven-multi-module -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>site</phase>
+                        <configuration>
+                            <target>
+                                <!-- Execute an ant task within maven -->
+                                <echo message="Generating JaCoCo Reports" />
+                                <taskdef name="report" classname="org.jacoco.ant.ReportTask">
+                                    <classpath path="${basedir}/../target/dependencies/org.jacoco.ant.jar" />
+                                </taskdef>
+                                <report>
+                                    <executiondata>
+                                        <fileset dir="${basedir}/../">
+                                            <include name="*/**/jacoco.exec" />
+                                        </fileset>
+                                    </executiondata>
+                                    <structure name="coverage reports">
+                                        <group name="rpn">
+                                            <classfiles>
+                                                <fileset dir="${basedir}/../">
+                                                    <include name="*/**/*.class" />
+                                                    <exclude name="*/**/*Test.class" />
+                                                    <exclude name="*/**/*TestCase.class" />
+                                                    <exclude name="*/**/*IT.class" />
+                                                    <exclude name="*/**/*IntegrationTest.class" />
+                                                    <exclude name="*/**/*Example.class" />
+                                                </fileset>
+                                            </classfiles>
+                                            <sourcefiles encoding="UTF-8">
+                                                <fileset dir="${basedir}/../">
+                                                    <include name="*/**/*.java" />
+                                                    <exclude name="*/**/*Test.java" />
+                                                    <exclude name="*/**/*TestCase.java" />
+                                                    <exclude name="*/**/*IT.java" />
+                                                    <exclude name="*/**/*IntegrationTest.java" />
+                                                    <exclude name="*/**/*Example.java" />
+                                                </fileset>
+                                            </sourcefiles>
+                                        </group>
+                                    </structure>
+                                    <html destdir="${basedir}/../target/site/jacoco-aggregate" />
+                                    <xml destfile="${basedir}/../target/site/jacoco-aggregate/coverage-report.xml" />
+                                    <csv destfile="${basedir}/../target/site/jacoco-aggregate/coverage-report.csv" />
+                                </report>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>org.jacoco.ant</artifactId>
+                        <version>${jacoco-maven-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- END: Maven Ant Run Plugin Config -->
+
+            <!-- Surefire plugins -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>--add-opens rpn.support/${project.groupId}.support=ALL-UNNAMED --add-opens
+                        infix.converter/${project.groupId}.infix.converter=ALL-UNNAMED --add-opens
+                        infix.converter/${project.groupId}.infix.support=ALL-UNNAMED --add-opens
+                        postfix.calculator/${project.groupId}.postfix.calculator=ALL-UNNAMED --add-opens
+                        postfix.calculator/${project.groupId}.postfix.support=ALL-UNNAMED --add-opens
+                        postfix.calculator/${project.groupId}.postfix.api=ALL-UNNAMED ${argLine}</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

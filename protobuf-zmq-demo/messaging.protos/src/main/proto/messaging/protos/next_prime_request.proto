@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_outer_classname = "NextPrimeRequestProtos";
+
+//option optimize_for = LITE_RUNTIME;
+//option java_package = "messaging.protos";
+
+
+package messaging.protos;
+
+message NextPrimeRequest {
+  int32 seq = 1;
+  string start = 2;;
+  string next = 3;
+  bool is_errors = 4;
+  string error_message = 5;
+}

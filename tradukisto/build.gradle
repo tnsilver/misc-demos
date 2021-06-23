@@ -1,0 +1,102 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.11.0"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'idea'
+    id 'checkstyle'
+    id 'jacoco'
+    id 'pmd'
+    id 'pl.allegro.tech.build.axion-release' version '1.8.3'
+    id "com.bmuschko.nexus" version "2.3.1"
+    id 'com.github.kt3k.coveralls' version '2.8.2'
+}
+
+apply plugin: 'io.codearte.nexus-staging'
+
+scmVersion {
+    tag {
+        prefix = 'tradukisto'
+    }
+}
+
+project.version = scmVersion.version
+project.group = "pl.allegro.finance"
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+
+compileJava {
+    options.encoding = "UTF-8"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "4.6"
+}
+
+dependencies {
+    compile "com.google.guava:guava:23.0"
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+}
+
+jacocoTestReport {
+    reports {
+        html.destination new File("${buildDir}/jacocoHtml")
+
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+nexusStaging {
+    packageGroup = "pl.allegro"
+}
+
+modifyPom {
+    project {
+        name 'Tradukisto'
+        description 'Small java library created to convert numbers to their word representations'
+        url 'https://github.com/allegro/tradukisto'
+        inceptionYear '2015'
+
+        scm {
+            url 'https://github.com/allegro/tradukisto'
+            connection 'scm:git@github.com:allegro/tradukisto.git'
+            developerConnection 'scm:git@github.com:allegro/tradukisto.git'
+        }
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+
+        developers {
+            developer {
+                id 'dorians'
+                name 'Dorian Sarnowski'
+            }
+        }
+    }
+}
+
+checkstyle {
+    toolVersion = "5.9"
+}

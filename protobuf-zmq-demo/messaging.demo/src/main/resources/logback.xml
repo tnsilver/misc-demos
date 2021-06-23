@@ -1,0 +1,17 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %n%n%msg%n%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <logger name="org.tnsilver.messaging.server" level="info"/>
+    <logger name="org.tnsilver.messaging.broker" level="info"/>
+    <logger name="org.tnsilver.messaging.client" level="info"/>
+
+</configuration>

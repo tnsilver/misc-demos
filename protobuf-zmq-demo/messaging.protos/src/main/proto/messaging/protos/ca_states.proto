@@ -1,0 +1,24 @@
+syntax = "proto3";
+option java_outer_classname = "CanadianProvinceEnumProtos";
+
+package messaging.protos;
+
+message CanadianProvinceEnum {
+  enum Province {
+    NONE = 0;
+    AB = 1; // Alberta
+    BC = 2; // British Columbia
+    LB = 3; // Labrador
+    MB = 4; // Manitoba
+    NB = 5; // New Brunswick
+    NF = 6; // Newfoundland
+    NS = 7; // Nova Scotia
+    NU = 8; // Nunavut
+    NW = 9; // North West Terr.
+    ON = 10; // Ontario
+    PE = 11; // Prince Edward Is.
+    QC = 12; // Quebec
+    SK = 13; // Saskatchewen
+    YU = 14; // Yukon
+  }
+}

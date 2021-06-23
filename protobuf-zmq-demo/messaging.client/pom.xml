@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>messaging.client</artifactId>
+	<name>messaging.client</name>
+	<description>A ZeroMQ client demo</description>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>com.tnsilver.messaging</groupId>
+		<artifactId>protobuf-zmq-demo</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.tnsilver.messaging</groupId>
+			<artifactId>messaging.util</artifactId>
+			<version>${project.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../messaging.util/target/messaging.util-${project.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.tnsilver.messaging</groupId>
+			<artifactId>messaging.protos</artifactId>
+			<version>${project.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../messaging.protos/target/messaging.protos-${project.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.zeromq</groupId>
+			<artifactId>jeromq</artifactId>
+			<version>${jeromq.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Automatic-Module-Name>messaging.client</Automatic-Module-Name>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,34 @@
+syntax = "proto3";
+option java_outer_classname = "AddressProtos";
+//option java_package = "messaging.protos";
+
+package messaging.protos;
+
+import "messaging/protos/us_states.proto";
+import "messaging/protos/ca_states.proto";
+import "messaging/protos/de_states.proto";
+
+message Address {
+  string filter = 1;
+  int64 id = 2;
+  string address_line_1 = 3;
+  string address_line_2 = 4;
+  string city = 5;
+  oneof oneof_state {
+    string none = 6;
+    messaging.protos.USStateEnum.State state = 7;
+    messaging.protos.CanadianProvinceEnum.Province province = 8;
+    messaging.protos.GermanLandEnum.Land land = 9;
+  }
+  string zip = 10;
+  string country = 11;
+  enum AddressType {
+    OTHER = 0;
+    RESIDENTIAL = 1;
+    SHIPPING = 2;
+    BILLING = 3;
+    BUSINESS = 4;
+  }
+  AddressType address_type = 12;
+}
+

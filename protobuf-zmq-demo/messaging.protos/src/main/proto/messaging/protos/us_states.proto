@@ -1,0 +1,73 @@
+syntax = "proto3";
+option java_outer_classname = "USStateEnumProtos";
+//option java_package = "messaging.protos";
+
+package messaging.protos;
+
+message USStateEnum {
+  enum State {
+    NONE = 0;
+    AL = 1;
+    AK = 2; // Alaska
+    AR = 3;
+    AZ = 4;
+    CA = 5;
+    CO = 6;
+    CT = 7;
+    DC = 8;
+    DE = 9;
+    FL = 10;
+    GA = 11;
+    HI = 12; // Hawaii
+    IA = 13;
+    ID = 14;
+    IL = 15;
+    IN = 16;
+    KS = 17;
+    KY = 18;
+    LA = 19;
+    MA = 20;
+    MD = 21;
+    ME = 22;
+    MI = 23;
+    MN = 24;
+    MO = 25;
+    MS = 26;
+    MT = 27;
+    NC = 28;
+    ND = 29;
+    NE = 30;
+    NH = 31;
+    NJ = 32;
+    NM = 33;
+    NV = 34;
+    NY = 35;
+    OK = 36;
+    OH = 37;
+    OR = 38;
+    PA = 39;
+    RI = 40;
+    SC = 41;
+    SD = 42;
+    TN = 43;
+    TX = 44;
+    UT = 45;
+    VA = 46;
+    VT = 47;
+    WA = 48;
+    WI = 49;
+    WV = 50;
+    WY = 51;
+    AS = 52; // American Samoa
+    GU = 53; // Guam
+    MH = 54; // Marshall Islands
+    FM = 55; // Micronesia
+    MP = 56; // Northern Marianas
+    PW = 57; // Palau
+    PR = 58; // Puerto Rico
+    VI = 59; // Virgin Islands
+    AE = 60; // armed forces in Europe, the Middle East, Africa, and Canada
+    AP = 61; // armed forces in the Pacific
+    AA = 62; // armed forces in the Americas excluding Canada.
+  }
+}

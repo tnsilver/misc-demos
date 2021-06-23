@@ -1,0 +1,19 @@
+syntax = "proto3";
+option java_outer_classname = "MessageProtos";
+
+//option optimize_for = LITE_RUNTIME;
+//option java_package = "messaging.protos";
+
+import "messaging/protos/contact.proto";
+import "messaging/protos/person.proto";
+import "messaging/protos/address.proto";
+
+package messaging.protos;
+
+message Message {
+  oneof content {
+    Person person = 1;
+    Contact contact = 2;
+    Address address = 3;
+  }
+}

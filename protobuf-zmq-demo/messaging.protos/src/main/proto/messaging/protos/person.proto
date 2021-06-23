@@ -1,0 +1,30 @@
+syntax = "proto3";
+option java_outer_classname = "PersonProtos";
+//option optimize_for = LITE_RUNTIME;
+//option java_package = "messaging.protos";
+
+package messaging.protos;
+
+import "google/protobuf/timestamp.proto";
+import "messaging/protos/address.proto";
+
+message Person {
+  reserved 11 to 19;
+  string filter = 1;
+  int64  id = 2;
+  string guid = 3;
+  string first_name = 4;
+  string middle_initial = 5;
+  string last_name = 6;
+  google.protobuf.Timestamp date_of_birth = 7;
+  enum MaritalStatus {
+    OTHER = 0;
+    SINGLE = 1;
+    MARRIED = 2;
+    DIVORCED = 3;
+    WIDOWED = 4;
+  }
+  MaritalStatus marital_status = 8;
+  int32 num_of_children = 9;
+  repeated Address address = 10;
+}

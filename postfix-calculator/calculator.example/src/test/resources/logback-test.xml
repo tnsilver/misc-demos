@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE xml>
+<configuration scan="true" scanPeriod="3 seconds">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{32}.%method -> %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<jmxConfigurator />
+	<root level="ALL">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+    <logger name="org.silvermania.rpn.infix.support.InfixNormalizer" level="DEBUG" />
+    <logger name="org.silvermania.rpn.infix.converter.InfixConverter" level="DEBUG" />
+    <logger name="org.silvermania.rpn.postfix.calculator.RPNCalculator" level="DEBUG" />
+
+    <logger name="org.silvermania.calculator.example" level="DEBUG" />
+	<logger name="org.silvermania.rpn.support" level="INFO" />
+    <logger name="org.silvermania.rpn.infix.converter" level="INFO" />
+    <logger name="org.silvermania.rpn.infix.support" level="INFO" />
+    <logger name="org.silvermania.rpn.postfix.api" level="INFO" />
+    <logger name="org.silvermania.rpn.postfix.api" level="INFO" />
+    <logger name="org.silvermania.rpn.postfix.calculator" level="INFO" />
+    <logger name="org.silvermania.rpn.postfix.support" level="INFO" />
+</configuration>

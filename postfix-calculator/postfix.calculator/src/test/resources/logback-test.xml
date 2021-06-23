@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE xml>
+<configuration scan="true" scanPeriod="3 seconds">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{32}.%method -> %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<jmxConfigurator />
+	<root level="ALL">
+		<appender-ref ref="STDOUT" />
+	</root>
+	<logger name="org.silvermania.rpn" level="DEBUG" />
+</configuration>
